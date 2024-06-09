@@ -10,7 +10,7 @@ class UserModel with ChangeNotifier {
   User? get user => _user;
 
   Future<void> fetchUser() async {
-    // await Future.delayed(const Duration(seconds: 1));
+    await Future.delayed(const Duration(seconds: 1));
     _user = User('Masha');
     notifyListeners();
   }
