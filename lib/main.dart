@@ -2,10 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const App());
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider<CounterModel>(
+      create: (context) => CounterModel(),
+    ),
+  ], child: const App()));
 }
 
-class CounterModel extends ChangeNotifier {
+class CounterModel with ChangeNotifier {
   int _count = 0;
 
   int get count => _count;
@@ -26,26 +30,19 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider<CounterModel>(
-          create: (context) => CounterModel(),
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Provider Counter Demo'),
         ),
-      ],
-      child: MaterialApp(
-        home: Scaffold(
-          appBar: AppBar(
-            title: const Text('Provider Counter Demo'),
-          ),
-          body: const Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                IncrementButton(),
-                DecrementButton(),
-                CounterView(),
-              ],
-            ),
+        body: const Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              IncrementButton(),
+              CounterView(),
+              DecrementButton(),
+            ],
           ),
         ),
       ),
