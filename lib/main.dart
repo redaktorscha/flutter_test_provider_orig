@@ -1,28 +1,18 @@
+import 'package:fl_test/screens/home.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import './models/counter_model.dart';
+import './models/user_model.dart';
 
 void main() {
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider<CounterModel>(
       create: (context) => CounterModel(),
     ),
+    ChangeNotifierProvider<UserModel>(
+      create: (context) => UserModel(),
+    ),
   ], child: const App()));
-}
-
-class CounterModel with ChangeNotifier {
-  int _count = 0;
-
-  int get count => _count;
-
-  void increment() {
-    _count += 1;
-    notifyListeners(); // Уведомить все виджеты, прослушивающие данную модель.
-  }
-
-  void decrement() {
-    _count -= 1;
-    notifyListeners(); // Уведомить все виджеты, прослушивающие данную модель.
-  }
 }
 
 class App extends StatelessWidget {
@@ -30,75 +20,9 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Provider Counter Demo'),
-        ),
-        body: const Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              IncrementButton(),
-              CounterView(),
-              DecrementButton(),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class CounterView extends StatelessWidget {
-  const CounterView({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    // var counter = Provider.of<CounterModel>(context);
-    var counter = context.watch<CounterModel>();
-    var currentCount = counter.count;
-    print(currentCount);
-
-    return Text(
-      '$currentCount',
-      style: const TextStyle(color: Colors.green),
-    );
-  }
-}
-
-class IncrementButton extends StatelessWidget {
-  const IncrementButton({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    // В этом случае нет необходимости прослушивать изменения, поэтому мы устанавливаем значение false в listen.
-    // var counter = Provider.of<CounterModel>(context, listen: false);
-    var counter = context.read<CounterModel>();
-
-    return IconButton(
-      icon: const Icon(Icons.add, size: 12),
-      onPressed: () {
-        counter.increment();
-      },
-    );
-  }
-}
-
-class DecrementButton extends StatelessWidget {
-  const DecrementButton({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    // В этом случае нет необходимости прослушивать изменения
-    // var counter = Provider.of<CounterModel>(context, listen: false);
-    var counter = context.read<CounterModel>();
-
-    return IconButton(
-      icon: const Icon(Icons.remove, size: 12),
-      onPressed: () {
-        counter.decrement();
-      },
+    return const MaterialApp(
+      title: 'Provider demo',
+      home: HomeScreen(),
     );
   }
 }
