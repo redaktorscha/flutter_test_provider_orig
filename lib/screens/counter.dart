@@ -9,7 +9,7 @@ class CounterScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Provider Demo'),
+        title: const Text('Counter screen'),
       ),
       body: Center(
         child: Column(
