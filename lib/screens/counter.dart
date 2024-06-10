@@ -54,7 +54,7 @@ class CounterView<T extends Counter> extends StatelessWidget {
 
     return Text(
       '$currentCount',
-      style: const TextStyle(color: Colors.green),
+      style: const TextStyle(color: Color(0xffb74093)),
     );
   }
 }
