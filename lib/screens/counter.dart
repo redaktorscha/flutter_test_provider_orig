@@ -12,20 +12,32 @@ class CounterScreen extends StatelessWidget {
         title: const Text('Counter screen'),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const IncrementButton(),
-            const CounterView(),
-            const DecrementButton(),
-            ElevatedButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: const Text('Go Home'))
-          ],
-        ),
-      ),
+          child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              IncrementButton(),
+              CounterView(),
+              DecrementButton(),
+            ],
+          ),
+          const Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              IncrementButton(),
+              CounterView(),
+              DecrementButton(),
+            ],
+          ),
+          ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text('Go Home'))
+        ],
+      )),
     );
   }
 }
