@@ -6,8 +6,11 @@ import './models/user_model.dart';
 
 void main() {
   runApp(MultiProvider(providers: [
-    ChangeNotifierProvider<CounterModel>(
-      create: (context) => CounterModel(),
+    ChangeNotifierProvider<CounterModel1>(
+      create: (context) => CounterModel1(),
+    ),
+    ChangeNotifierProvider<CounterModel2>(
+      create: (context) => CounterModel2(),
     ),
     ChangeNotifierProvider<UserModel>(
       create: (context) => UserModel(),

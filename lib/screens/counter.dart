@@ -18,17 +18,17 @@ class CounterScreen extends StatelessWidget {
           const Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              IncrementButton(),
-              CounterView(),
-              DecrementButton(),
+              IncrementButton<CounterModel1>(),
+              CounterView<CounterModel1>(),
+              DecrementButton<CounterModel1>(),
             ],
           ),
           const Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              IncrementButton(),
-              CounterView(),
-              DecrementButton(),
+              IncrementButton<CounterModel2>(),
+              CounterView<CounterModel2>(),
+              DecrementButton<CounterModel2>(),
             ],
           ),
           ElevatedButton(
@@ -42,13 +42,13 @@ class CounterScreen extends StatelessWidget {
   }
 }
 
-class CounterView extends StatelessWidget {
+class CounterView<T extends Counter> extends StatelessWidget {
   const CounterView({super.key});
 
   @override
   Widget build(BuildContext context) {
     // var counter = Provider.of<CounterModel>(context);
-    var counter = context.watch<CounterModel>();
+    var counter = context.watch<T>();
     var currentCount = counter.count;
     print(currentCount);
 
@@ -59,14 +59,14 @@ class CounterView extends StatelessWidget {
   }
 }
 
-class IncrementButton extends StatelessWidget {
+class IncrementButton<T extends Counter> extends StatelessWidget {
   const IncrementButton({super.key});
 
   @override
   Widget build(BuildContext context) {
     // В этом случае нет необходимости прослушивать изменения, поэтому мы устанавливаем значение false в listen.
     // var counter = Provider.of<CounterModel>(context, listen: false);
-    var counter = context.read<CounterModel>();
+    var counter = context.read<T>();
 
     return IconButton(
       icon: const Icon(Icons.add, size: 12),
@@ -77,14 +77,14 @@ class IncrementButton extends StatelessWidget {
   }
 }
 
-class DecrementButton extends StatelessWidget {
+class DecrementButton<T extends Counter> extends StatelessWidget {
   const DecrementButton({super.key});
 
   @override
   Widget build(BuildContext context) {
     // В этом случае нет необходимости прослушивать изменения
     // var counter = Provider.of<CounterModel>(context, listen: false);
-    var counter = context.read<CounterModel>();
+    var counter = context.read<T>();
 
     return IconButton(
       icon: const Icon(Icons.remove, size: 12),
