@@ -1,3 +1,4 @@
+import 'package:fl_test/models/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/counter_model.dart';
@@ -7,6 +8,9 @@ class CounterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // access different provider
+    var userProvider = context.watch<UserModel>();
+    print(userProvider.user?.name);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Counter screen'),
